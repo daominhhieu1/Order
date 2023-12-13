@@ -9,9 +9,15 @@ namespace BeautyPoly.View.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         OrderRepo orderRepo;
-        public OrderController(OrderRepo orderRepo)
+        ProductRepo prodRepo;
+        DetailOrderRepo detailOrderRepo;
+        ProductSkuRepo productSkuRepo;
+        public OrderController(OrderRepo orderRepo, ProductRepo prodRepo, DetailOrderRepo detailOrderRepo, ProductSkuRepo productSkuRepo)
         {
             this.orderRepo = orderRepo;
+            this.prodRepo = prodRepo;
+            this.detailOrderRepo = detailOrderRepo;
+            this.productSkuRepo = productSkuRepo;
         }
         [Route("admin/order")]
         public IActionResult Index()
@@ -23,11 +29,16 @@ namespace BeautyPoly.View.Areas.Admin.Controllers
         {
             return Json(await orderRepo.GetAllAsync(), new System.Text.Json.JsonDocumentOptions());
         }
-
+        [HttpGet("admin/order/{statusId}")]
+        public async Task<IActionResult> GetOrder(int statusId)
+        {
+            var result = await orderRepo.FindAsync(x=>x.TransactStatusID == statusId);
+            return Json(result.ToList(), new System.Text.Json.JsonSerializerOptions());
+        }
         [HttpGet("admin/order/get-product")]
         public async Task<IActionResult> GetProduct()
         {
-            var result = await orderRepo.GetAllAsync();
+            var result = await prodRepo.GetAllAsync();
             return Json(result.Where(p => p.IsDelete == false || p.IsDelete == null).ToList(), new System.Text.Json.JsonSerializerOptions());
         }
 
@@ -36,57 +47,91 @@ namespace BeautyPoly.View.Areas.Admin.Controllers
         {
             try
             {
-                var checkExistCode = await orderRepo.FirstOrDefaultAsync(p => p.OrderCode == orderDTO.order.OrderCode && p.OrderID != orderDTO.order.OrderID);
+                Order order = new Order();
+                order.OrderCode = "HD_" + DateTime.Now.Ticks;
+                var checkExistCode = await orderRepo.FirstOrDefaultAsync(p => p.OrderCode == order.OrderCode && p.OrderID != orderDTO.OrderID);
                 if (checkExistCode != null)
                 {
                     return Json("Mã đơn hàng đã tồn tại! Vui lòng nhập mã khác.");
                 }
-                Order order = new Order();
+                if (orderDTO.prods.Count()<0)
+                {
+
+                    return Json("Mã đơn hàng đã tồn tại! Vui lòng nhập mã khác.");
+                }
                 if (order.OrderID > 0)
                 {
-                    var orderID = orderDTO.order.OrderID;
+                    var orderID = orderDTO.OrderID;
                     order.OrderID = orderID;
                     order.TransactStatusID = 1;
-                    order.OrderCode = "HD_"+orderID;
-                    order.AccountID = 1;
+                    order.AccountID = 2;
                     order.AccountName = "ACNAME";
                     order.PotentialCustomerID = 1;
-                    order.CustomerName = orderDTO.order.CustomerName;
-                    order.OrderDate = orderDTO.order.OrderDate;
-                    order.ShipDate = orderDTO.order.ShipDate;
-                    order.PaymentDate = orderDTO.order.PaymentDate;
-                    order.Note = orderDTO.order.Note;
-                    order.TotalMoney = orderDTO.order.TotalMoney;
-                    order.Address = orderDTO.order.Address;
-                    order.MedthodPayment = orderDTO.order.MedthodPayment;
-                    order.IsApproved = orderDTO.order.IsApproved;
-                    order.IsDelete = orderDTO.order.IsDelete;
-
+                    order.CustomerName = orderDTO.CustomerName;
+                    order.OrderDate = DateTime.Now;
+                    order.ShipDate = DateTime.Now.AddDays(3);
+                    order.PaymentDate = DateTime.Now;
+                    order.Note = orderDTO.Note;
+                    order.TotalMoney = orderDTO.prods.Sum(x=>x.Price);
+                    order.Address = orderDTO.Address;
+                    order.MedthodPayment = orderDTO.MedthodPayment;
+                    order.CustomerPhone = orderDTO.CustomerPhone;
                     await orderRepo.UpdateAsync(order);
                 }
                 else
                 {
-                    var orderID = orderDTO.order.OrderID;
-                    order.OrderID = orderID;
                     order.TransactStatusID = 1;
-                    order.OrderCode = "HD_" + order.OrderID;
-                    order.AccountID = 1;
+                    order.AccountID = 2;
                     order.AccountName = "ACNAME";
                     order.PotentialCustomerID = 1;
-                    order.CustomerName = orderDTO.order.CustomerName;
-                    order.OrderDate = orderDTO.order.OrderDate;
-                    order.ShipDate = orderDTO.order.ShipDate;
-                    order.PaymentDate = orderDTO.order.PaymentDate;
-                    order.Note = orderDTO.order.Note;
-                    order.TotalMoney = orderDTO.order.TotalMoney;
-                    order.Address = orderDTO.order.Address;
-                    order.MedthodPayment = orderDTO.order.MedthodPayment;
-                    order.IsApproved = orderDTO.order.IsApproved;
-                    order.IsDelete = false;
+                    order.CustomerName = orderDTO.CustomerName;
+                    order.OrderDate = DateTime.Now;
+                    order.ShipDate = DateTime.Now.AddDays(3);
+                    order.PaymentDate = orderDTO.PaymentDate;
+                    order.Note = orderDTO.Note;
+                    order.TotalMoney = orderDTO.prods.Sum(x => x.Price);
+                    order.Address = orderDTO.Address;
+                    order.MedthodPayment = orderDTO.MedthodPayment;
+                    order.CustomerPhone = orderDTO.CustomerPhone;
                     await orderRepo.InsertAsync(order);
-                    return Json("Thêm thành công");
+
                 }
-                return Json(1);
+                checkExistCode = await orderRepo.FirstOrDefaultAsync(p => p.OrderCode == order.OrderCode);
+
+                if (checkExistCode != null)
+                {
+                    foreach (var prod in orderDTO.prods) 
+                    {
+                        var checkExistDetailOrder = await detailOrderRepo.FirstOrDefaultAsync(p => p.ProductSkusID == prod.ProductID && p.OrderID == checkExistCode.OrderID);
+                       
+                        if (checkExistDetailOrder != null)
+                        {
+                            checkExistDetailOrder.Price = prod.Price;
+                            checkExistDetailOrder.Quantity = prod.Quantity;
+                            await detailOrderRepo.UpdateAsync(checkExistDetailOrder);
+
+                        }
+                        else
+                        {
+                            OrderDetails orderDetail = new OrderDetails
+                            {
+                                OrderID = checkExistCode.OrderID,
+                                Price = prod.Price,
+                                Quantity = prod.Quantity,
+                                ProductSkusID = prod.ProductID
+                            };
+                            await detailOrderRepo.InsertAsync(orderDetail);
+
+                        }
+                    }
+                }
+                else
+                {
+                    return Json("Lỗi insert update");
+                }
+
+
+                return Json("Thêm thành công");
             }
             catch (Exception ex)
             {

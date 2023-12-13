@@ -28,6 +28,7 @@ builder.Services.AddScoped<VoucherRepo>();
 builder.Services.AddScoped<CartDetailsRepo>();
 builder.Services.AddScoped<ProductImagesRepo>();
 builder.Services.AddScoped<OrderRepo>();
+builder.Services.AddScoped<DetailOrderRepo>();
 builder.Services.AddSession(p => p.IdleTimeout = TimeSpan.FromSeconds(50));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie
 (
