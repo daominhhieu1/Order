@@ -1,0 +1,115 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BeautyPoly.View
+build_property.RootNamespace = BeautyPoly.View
+build_property.ProjectDir = C:\Users\minhh\OneDrive\Desktop\BeautyPoly_271123\BeautyPoly_271123\BeautyPoly\BeautyPoly.View\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\minhh\OneDrive\Desktop\BeautyPoly_271123\BeautyPoly_271123\BeautyPoly\BeautyPoly.View
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Account/AdminLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxBZG1pbkxvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Coupon/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cG9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Home/AdminLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxBZG1pbkxvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Option/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3B0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Order/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3JkZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/PotentialCustomer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG90ZW50aWFsQ3VzdG9tZXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Sale/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2FsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Voucher/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVm91Y2hlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/Checkout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-h3z0goe0ah
+
+[C:/Users/minhh/OneDrive/Desktop/BeautyPoly_271123/BeautyPoly_271123/BeautyPoly/BeautyPoly.View/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-axll56s2yi
