@@ -32,9 +32,29 @@ namespace BeautyPoly.Data.Models.DTO
     }
     public class productPick
     {
+        public string Name { get; set; }
+        public string Skus { get; set; }
         public int ProductID { get; set; }
         public int Quantity { get; set;}
-        public int Price { get; set;}
+        public double Price { get; set;}
     }
+    public class ProductSkuResponse
+    {
+        public ProductSkuResponse(){}
+        public ProductSkuResponse(Product product, ProductSkus productSkus)
+        {
+            if (product != null && productSkus != null)
+            {
+                ProductSkuID = productSkus.ProductSkusID;
+                ProductName = product.ProductName;
+                Sku = productSkus.Sku;
+                Price = productSkus.Price;
+            }
     
+        }
+        public int ProductSkuID { get; set; }
+        public string ProductName { get; set; }
+        public string Sku { get; set; }
+        public double? Price { get; set; }
+    }
 }

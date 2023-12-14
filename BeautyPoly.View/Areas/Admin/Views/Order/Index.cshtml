@@ -31,19 +31,25 @@
                             <li style="width:5%"><a class="btn btn-success btn-sm" id="btn_add_orderProduct" onclick="add()"><i class="bx bx-plus"></i></a></li>
 
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-home" type="button" role="tab" aria-controls="home" aria-selected="false" tabindex="-1">Đơn hàng chờ</button>
+                                <button class="nav-link " id="home-tab" data-status="1" data-bs-toggle="tab" data-bs-target="#bordered-home" type="button" role="tab" aria-controls="home" aria-selected="false" tabindex="-1">Đơn hàng chờ</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-profile" type="button" role="tab" aria-controls="profile" aria-selected="false" tabindex="-1">Đã duyệt</button>
+                                <button class="nav-link" id="profile-tab" data-status="2" data-bs-toggle="tab" data-bs-target="#bordered-profile" type="button" role="tab" aria-controls="profile" aria-selected="false" tabindex="-1">Đã duyệt</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="contact-tab" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="true">Chờ giao hàng</button>
+                                <button class="nav-link active" id="contact-tab" data-status="3" data-bs-toggle="tab" data-bs-target="#bordered-contact" type="button" role="tab" aria-controls="contact" aria-selected="true">Chờ giao hàng</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="home-tab1" data-bs-toggle="tab" data-bs-target="#bordered-home1" type="button" role="tab" aria-controls="home1" aria-selected="false" tabindex="-1">Hoàn đơn/hủy hàng</button>
+                                <button class="nav-link" id="home-tab1" data-status="4" data-bs-toggle="tab" data-bs-target="#bordered-home1" type="button" role="tab" aria-controls="home1" aria-selected="false" tabindex="-1">Hoàn đơn/hủy hàng</button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="home-tab2" data-bs-toggle="tab" data-bs-target="#bordered-home2" type="button" role="tab" aria-controls="home2" aria-selected="false" tabindex="-1">Giao thành công</button>
+                                <button class="nav-link" id="home-tab2" data-status="5" data-bs-toggle="tab" data-bs-target="#bordered-home2" type="button" role="tab" aria-controls="home2" aria-selected="false" tabindex="-1">Giao thành công</button>
+                            </li>
+                            <li>
+                                <button type="button" style="margin-left:50px" onclick="confirmOrder()" class="btn btn-success">Xác nhận</button>
+                            </li>
+                            <li>
+                                <button type="button" style="margin-left:20px" onclick="cancelOrder()" class="btn btn-danger">Hủy đơn</button>
                             </li>
                         </ul>
                     </div>
@@ -67,6 +73,7 @@
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày giao hàng</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày thanh toán</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ghi chú</th>
+                                            <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbody_order_hc">
@@ -142,6 +149,8 @@
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày giao hàng</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày thanh toán</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ghi chú</th>
+                                            <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Thao tác</th>
+
                                         </tr>
                                     </thead>
                                     <tbody id="tbody_order_dd">
@@ -216,9 +225,11 @@
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày giao hàng</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày thanh toán</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ghi chú</th>
+                                            <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Thao tác</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody id="tbody_order_hc">
+                                    <tbody id="tbody_order_cgh">
                                         <tr>
                                             <th style="vertical-align: top;">1</th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder()" class="card-link">HD_114410112023</a></th>
@@ -290,9 +301,11 @@
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày giao hàng</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày thanh toán</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ghi chú</th>
+                                            <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Thao tác</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody id="tbody_order_hc">
+                                    <tbody id="tbody_order_hd">
                                         <tr>
                                             <th style="vertical-align: top;">1</th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder()" class="card-link">HD_114410112023</a></th>
@@ -364,9 +377,11 @@
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày giao hàng</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ngày thanh toán</th>
                                             <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Ghi chú</th>
+                                            <th style="vertical-align: top; white-space: nowrap;" class="bg-primary">Thao tác</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody id="tbody_order_hc">
+                                    <tbody id="tbody_order_gtc">
                                         <tr>
                                             <th style="vertical-align: top;">1</th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder()" class="card-link">HD_114410112023</a></th>
@@ -444,7 +459,7 @@
                             </button>
                             </li> *@
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-home" type="button" role="tab" aria-controls="home" aria-selected="true">Hoán đơn 1</button>
+                                <button class="nav-link active" id="home-tab22" data-bs-toggle="tab" data-bs-target="#bordered-home" type="button" role="tab" aria-controls="home" aria-selected="true">Hoán đơn 1</button>
                             </li>
 
                         </ul>
@@ -458,7 +473,7 @@
                                         <div class="col-md-3">
                                             <div class="mb-3">
                                                 <label for="order_code" class="form-label">Mã đơn</label>
-                                                <input type="text" class="form-control" id="order_code">
+                                                <input type="text" class="form-control" id="order_code" readonly style="background-color: #f9f4ee;">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -521,53 +536,113 @@
         </div>
     </div>
 </div>
-<tbody id="showHD">
-    <div class="modal fade" tabindex="-1">
-
-        <h2>Cửa hàng BeatyPoly</h2>
-        <h4>Ngày: 10/11/2023</h4>
-        <h4>Số hóa đơn:      HD_114410112023</h4>
-        <h3 style="text-align:center">HÓA ĐƠN CHI TIẾT</h3>
-        <br />
-        <br />
-        <h4>Tên thu ngân: Admin</h4>
-        <h4>Tên khác hàng: Trần Đức Duy</h4>
-        <h4>SĐT: 0987654321</h4>
-        <h4>Địa chỉ: Mỹ Đình - Hà Nội - Việt Nam</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tên Sản Phẩm  |</th>
-                    <th>Số Lượng  |</th>
-                    <th>Đơn Giá</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Nước hoa 1</td>
-                    <td>1</td>
-                    <td>1.500.000</td>
-                </tr>
-                <tr>
-                    <td>Phấn phủ 1</td>
-                    <td>1</td>
-                    <td>500.000</td>
-                </tr>
-                <tr>
-                    <td>Kem dưỡng 1</td>
-                    <td>1</td>
-                    <td>1.500.000</td>
-                </tr>
-                <!-- Thêm các dòng khác nếu cần -->
-            </tbody>
-        </table>
-        <h4>Tổng tiền hàng:         3.500.000</h4>
-        <h4>Giảm giá:               20%</h4>
-        <h4>Tổng tiền thanh toán:   3.150.000</h4>
+@* <div id="showHD2" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tạo hóa đơn</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="invoice-header">
+                    <h2>Cửa hàng BeatyPoly</h2>
+                    <h4 class="invoice-date">Ngày: <span id="dateExport"></span></h4>
+                    <h4 class="invoice-number">Số hóa đơn: <span id="orderCodeExport"></span></h4>
+                    <h3 class="invoice-title">HÓA ĐƠN CHI TIẾT</h3>
+                </div>
+                <div class="customer-details">
+                    <h4>Tên thu ngân: Admin</h4>
+                    <h4>Tên khách hàng: <span id="customerNameExport"></span></h4>
+                    <h4>SĐT: <span id="customerPhoneExport"></span></h4>
+                    <h4>Địa chỉ: <span id="customerArdessExport"></span></h4>
+                </div>
+                <div class="invoice-items">
+                    <table class="invoice-table">
+                        <thead>
+                            <tr>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Đơn Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody class = "prodOrderExport">
+                            <tr>
+                                <td>Nước hoa 1</td>
+                                <td>1</td>
+                                <td>1.500.000</td>
+                            </tr>
+                            <tr>
+                                <td>Phấn phủ 1</td>
+                                <td>1</td>
+                                <td>500.000</td>
+                            </tr>
+                            <tr>
+                                <td>Kem dưỡng 1</td>
+                                <td>1</td>
+                                <td>1.500.000</td>
+                            </tr>
+                            <!-- Add more rows if needed -->
+                        </tbody>
+                    </table>
+                    <div class="invoice-summary">
+                        <h4>Tổng tiền hàng: <span id="totalPriceExport"></span></h4>
+                        <h4>Giảm giá: %</h4>
+                        <h4>Tổng tiền thanh toán: <span id="totalPayport"></span></h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
     </div>
-</tbody>
-
-
+</div> *@
+<div id="showHD" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tạo hóa đơn</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="invoice-header">
+                    <h2>Cửa hàng BeatyPoly</h2>
+                    <h4 class="invoice-date">Ngày: <span id="dateExport"></span></h4>
+                    <h4 class="invoice-number">Số hóa đơn: <span id="orderCodeExport"></span></h4>
+                    <h3 class="invoice-title">HÓA ĐƠN CHI TIẾT</h3>
+                </div>
+                <div class="customer-details">
+                    <h4>Tên thu ngân: Admin</h4>
+                    <h4>Tên khách hàng: <span id="customerNameExport"></span></h4>
+                    <h4>SĐT: <span id="customerPhoneExport"></span></h4>
+                    <h4>Địa chỉ: <span id="customerArdessExport"></span></h4>
+                </div>
+                <div class="invoice-items">
+                    <table class="table table-bordered">
+                        <thead class="table">
+                            <tr>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Đơn Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody class="prodOrderExport">
+                            <!-- Your table rows will be dynamically populated here -->
+                        </tbody>
+                    </table>
+                    <div class="invoice-summary">
+                        <h4>Tổng tiền hàng: <span id="totalPriceExport"></span></h4>
+                        <h4>Giảm giá: %</h4>
+                        <h4>Tổng tiền thanh toán: <span id="totalPayport"></span></h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts {
     <script src="~/js/order.js" asp-append-version="true"></script>
 }
