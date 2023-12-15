@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BeautyPoly.View")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+911073d98f439eaa98449a1595ecfb0bf81bf39c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1536b4be730645adb39c215c53288bdadc9de297")]
 [assembly: System.Reflection.AssemblyProductAttribute("BeautyPoly.View")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BeautyPoly.View")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

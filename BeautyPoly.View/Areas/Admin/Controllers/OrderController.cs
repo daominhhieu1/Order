@@ -284,5 +284,23 @@ namespace BeautyPoly.View.Areas.Admin.Controllers
             }
             return Json(0);
         }
+        [HttpPost("admin/order/payorder")]
+        public async Task<IActionResult> PayOrder([FromBody] List<int> orderIDs)
+        {
+            if (orderIDs.Count() > 0)
+            {
+                foreach (var item in orderIDs)
+                {
+                    var order = await orderRepo.GetByIdAsync(item);
+                    if (order != null)
+                    {
+                        order.TransactStatusID = 5;
+                        await orderRepo.UpdateAsync(order);
+                    }
+                }
+                return Json(1);
+            }
+            return Json(0);
+        }
     }
 }

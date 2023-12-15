@@ -46,7 +46,8 @@ $(document).ready(function () {
 
                     html += `
                     <tr>
-                                            <th style="vertical-align: top;">${++index} <input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;"> <input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;">${++index}</th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder(${element.OrderID})" class="card-link">${element.OrderCode}</a></th>
                                             <th style="vertical-align: top;">Admin</th>
                                             <th style="vertical-align: top;">${element.CustomerName}</th>
@@ -95,7 +96,8 @@ $(document).ready(function () {
 
                         html += `
                                         <tr>
-                                            <th style="vertical-align: top;">${++index} <input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"> </th>
+                                            <th style="vertical-align: top;"><input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"> </th>
+                                            <th style="vertical-align: top;">${++index}  </th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder(${element.OrderID})" class="card-link">${element.OrderCode}</a></th>
                                             <th style="vertical-align: top;">Admin</th>
                                             <th style="vertical-align: top;">${element.CustomerName}</th>
@@ -144,7 +146,8 @@ $(document).ready(function () {
 
                     html += `
                     <tr>
-                                            <th style="vertical-align: top;">${++index} <input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;"><input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;">${++index} </th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder(${element.OrderID})" class="card-link">${element.OrderCode}</a></th>
                                             <th style="vertical-align: top;">Admin</th>
                                             <th style="vertical-align: top;">${element.CustomerName}</th>
@@ -190,7 +193,8 @@ $(document).ready(function () {
 
                     html += `
                     <tr>
-                                            <th style="vertical-align: top;">${++index} <input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;"><input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;">${++index} </th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder(${element.OrderID})" class="card-link">${element.OrderCode}</a></th>
                                             <th style="vertical-align: top;">Admin</th>
                                             <th style="vertical-align: top;">${element.CustomerName}</th>
@@ -236,7 +240,8 @@ $(document).ready(function () {
 
                     html += `
                     <tr>
-                                            <th style="vertical-align: top;">${++index} <input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;"><input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
+                                            <th style="vertical-align: top;">${++index} </th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder(${element.OrderID})" class="card-link">${element.OrderCode}</a></th>
                                             <th style="vertical-align: top;">Admin</th>
                                             <th style="vertical-align: top;">${element.CustomerName}</th>
@@ -333,6 +338,50 @@ function cancelOrder() {
     var dataToSend = JSON.stringify({ orderIDs: ids });
     $.ajax({
         url: '/admin/order/cancel',
+        type: 'Post',
+        contentType: 'application/json',
+        data: JSON.stringify(ids),
+        success: function (result) {
+            if (result == 1) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Oops...',
+                    text: `Thành công`,
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+                $("#borderedTab").find(".active").click();
+
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `Thất bại`,
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            }
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    });
+}
+function payOrder() {
+    var ids = [];
+    $(".gridCheck:checked").each(function () {
+        // Perform actions on each checked element with class 'gridCheck'
+        // For example, you can access attributes or perform operations
+        var checkedElement = $(this); // 'checkedElement' refers to the current checked element in the loop
+
+        // Accessing attributes or performing operations on the checked element
+        var elementId = checkedElement.data('id'); // Get the ID of the checked element
+        ids.push(elementId);
+
+    });
+    var dataToSend = JSON.stringify({ orderIDs: ids });
+    $.ajax({
+        url: '/admin/order/payorder',
         type: 'Post',
         contentType: 'application/json',
         data: JSON.stringify(ids),
