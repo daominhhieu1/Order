@@ -181,6 +181,10 @@ namespace BeautyPoly.View.Areas.Admin.Controllers
                                 };
                                 await detailOrderRepo.InsertAsync(orderDetail);
 
+                               var itemSkus = await productSkuRepo.GetByIdAsync(prod.ProductID);
+                               var quantity = itemSkus.Quantity - orderDetail.Quantity;
+                               itemSkus.Quantity = quantity;
+                               await productSkuRepo.UpdateAsync(itemSkus);
                             }
                         }
                     }
@@ -258,7 +262,31 @@ namespace BeautyPoly.View.Areas.Admin.Controllers
                         }
                         if (order.TransactStatusID <= 5)
                         {
-                            await orderRepo.UpdateAsync(order);
+                            if (order.TransactStatusID == 1)
+                            {
+                                var orderDetails = await detailOrderRepo.FindAsync(x => x.OrderID == order.OrderID);
+                                var updateQuantitySkus = true;
+                                foreach (var orderDetail in orderDetails)
+                                {
+                                    var itemSkus = await productSkuRepo.GetByIdAsync(orderDetail.ProductSkusID);
+                                    var quantity = itemSkus.Quantity - orderDetail.Quantity;
+                                    if (quantity < 0)
+                                    {
+                                        updateQuantitySkus = false;
+                                        break;
+                                    }
+                                    itemSkus.Quantity = quantity;
+                                    await productSkuRepo.UpdateAsync(itemSkus);
+                                }
+                                if (updateQuantitySkus)
+                                {
+                                    await orderRepo.UpdateAsync(order);
+                                }
+                                else
+                                {
+                                    return Json(0);
+                                }
+                            }
                         }
                     }
                 }
@@ -278,6 +306,15 @@ namespace BeautyPoly.View.Areas.Admin.Controllers
                     {
                         order.TransactStatusID = 4;
                         await orderRepo.UpdateAsync(order);
+                        var orderDetails = await detailOrderRepo.FindAsync(x=>x.OrderID == order.OrderID);
+                        foreach (var orderDetail in orderDetails)
+                        {
+                            var itemSkus = await productSkuRepo.GetByIdAsync(orderDetail.ProductSkusID);
+                            var quantity = itemSkus.Quantity + orderDetail.Quantity;
+                            itemSkus.Quantity = quantity;
+                            await productSkuRepo.UpdateAsync(itemSkus);
+                        }
+
                     }
                 }
                 return Json(1);

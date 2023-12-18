@@ -1,19 +1,7 @@
 ﻿var productList = [];
 var orderList = [];
 $(document).ready(function () {
-    $.ajax({
-        url: '/admin/order/get-product',
-        type: 'Get',
-        success: function (result) {
-            if (result.length > 0) {
-                productList = result;
-            }
-            console.log(result);
-        },
-        error: function (err) {
-            console.log(err)
-        }
-    });
+    loadProd();
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('bx-trash')) {
             var clickedTrashButton = event.target;
@@ -240,7 +228,6 @@ $(document).ready(function () {
 
                     html += `
                     <tr>
-                                            <th style="vertical-align: top;"><input class="form-check-input gridCheck" type="checkbox" data-id="${element.OrderID}"></th>
                                             <th style="vertical-align: top;">${++index} </th>
                                             <th style="vertical-align: top;"><a href="#" onclick="addHDOrder(${element.OrderID})" class="card-link">${element.OrderCode}</a></th>
                                             <th style="vertical-align: top;">Admin</th>
@@ -255,10 +242,6 @@ $(document).ready(function () {
                                             <th style="vertical-align: top;">${_shipDate}</th>
                                             <th style="vertical-align: top;">${element.PaymentDate}</th>
                                             <th style="vertical-align: top;white-space: nowrap;">${element.Note}</th>
-                                            <th style="vertical-align: top;">
-                                               <button type="button" style="margin-left:50px" class="btn btn-info" onclick="Edit(${element.OrderID})">Sửa</button>
-                                               <button type="button" style="margin-left:50px" onclick="removeOrder(${element.OrderID})" class="btn btn-danger">Xóa</button>
-                                            </th>
                                         </tr>`;
                 });
                 $("#tbody_order_gtc").append(html);
@@ -306,13 +289,14 @@ function confirmOrder()
                     showConfirmButton: false,
                     timer: 1000
                 });
+                loadProd();
                 $("#borderedTab").find(".active").click();
 
             } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: `Thất bại`,
+                    text: `Thất bại. Vui lòng kiểm tra lại thông tin hoặc số lượng sản phẩm trong kho`,
                     showConfirmButton: false,
                     timer: 1000
                 })
@@ -350,6 +334,7 @@ function cancelOrder() {
                     showConfirmButton: false,
                     timer: 1000
                 });
+                loadProd();
                 $("#borderedTab").find(".active").click();
 
             } else {
@@ -544,7 +529,6 @@ function createOrder() {
         });
     });
     order.prods = prods;
-    console.log(prods);
     $.ajax({
         url: '/admin/order/create',
         type: 'POST',
@@ -561,6 +545,7 @@ function createOrder() {
                     timer: 1000
                 })
                 $("#modal_order").modal("hide");
+                loadProd();
                 $("#borderedTab").find(".active").click();
             } else {
                 Swal.fire({
@@ -593,7 +578,7 @@ function addSanPham() {
     var select2Prod = "";
     if (productList.length > 0) {
         productList.forEach(function (element) {
-            select2Prod += ` <option value="${element.ProductSkuID}" data-price="${element.Price}" >${element.ProductName} | ${element.Sku}| ${element.Price}</option>`;
+            select2Prod += ` <option value="${element.ProductSkuID}" data-price="${element.Price}" data-quantity="${element.Quantity}" >${element.ProductName} | ${element.Sku}| ${element.Price}</option>`;
         });
     }
     var html = `
@@ -608,7 +593,7 @@ function addSanPham() {
             <input type="number" class="form-control item-quantity" onchange="changeProd(this)"/>
         </td>
         <td class="text-end ">
-            <input type="number" class="form-control item-price" readonly style="background-color: #f9f4ee;" />
+            <input type="number" class="form-control item-price"/>
         </td>
 
     </tr>`;
@@ -678,10 +663,15 @@ function removeOrder(id)
 function changeProd(element) {
     var parentCurrent = $(element).parent().parent();
     var selectedPrice = parentCurrent.find('option:selected').data('price'); // Get the data-price attribute of the selected option
+    var selectedQuantity = parentCurrent.find('option:selected').data('quantity'); // Get the data-price attribute of the selected option
     console.log("Selected price: " + selectedPrice);
     var quantity = parentCurrent.find(".item-quantity").val();
-    if (quantity > 0 && selectedPrice >0) {
-        parentCurrent.find(".item-price").val(quantity * selectedPrice);
+    if (quantity > 0 && selectedPrice > 0) {
+        if (quantity > selectedQuantity) {
+            alert("Số lượng sản phẩm trong kho không đủ vui lòng thử lại");
+        } else {
+            parentCurrent.find(".item-price").val(quantity * selectedPrice);
+        }
     }
 }
 // Function to populate the invoice details
@@ -707,6 +697,22 @@ function populateInvoiceDetails(data) {
 
     document.getElementById('totalPriceExport').textContent = data.totalPrice;
     document.getElementById('totalPayport').textContent = data.totalPayment;
+}
+function loadProd()
+{
+    $.ajax({
+        url: '/admin/order/get-product',
+        type: 'Get',
+        success: function (result) {
+            if (result.length > 0) {
+                productList = result;
+            }
+            console.log(result);
+        },
+        error: function (err) {
+            console.log(err)
+        }
+    });
 }
 setTimeout(function () {
     $("#home-tab").click();

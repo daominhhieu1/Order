@@ -49,9 +49,11 @@ namespace BeautyPoly.Data.Models.DTO
                 ProductName = product.ProductName;
                 Sku = productSkus.Sku;
                 Price = productSkus.Price;
+                Quantity = (int)productSkus.Quantity;
             }
     
         }
+        public int Quantity { get; set; }
         public int ProductSkuID { get; set; }
         public string ProductName { get; set; }
         public string Sku { get; set; }
